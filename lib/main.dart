@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'description_place.dart';
 import 'review_list.dart';
+import 'gradient_back.dart';
+import 'header_appbar.dart';
 
 void main() {
+
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: Brightness.light
+      )
+  );
+
   runApp(const MyApp());
 }
 
@@ -27,11 +38,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Hola Mundo"),
+        body: Stack(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                DescriptionPlace("Barranquilla", 2, "Ciudad de calor y cemento"),
+                ReviewList()
+              ],
+            ),
+            HeaderAppBar()
+          ],
         ),
-        //body: new DescriptionPlace("Barranquilla", 2, "Ciudad de calor y cemento"),
-        body: ReviewList(),
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
